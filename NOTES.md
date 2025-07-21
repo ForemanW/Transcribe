@@ -19,17 +19,20 @@ import sys
 
 #using os for os.path.exists(path) to make sure user input file exists
 
-import os```
+import os
+```
 
 #Start with the sample string:
 
-```t = "GATGGAACTTGACTACGTAAATT"
+```python
+t = "GATGGAACTTGACTACGTAAATT"
 
 #lets use the replace() method, which takes arguments (find, replace)
 
 u = t.replace("T", "U")
 
-print(u)```
+print(u)
+```
 
 #Now try a sample list:
 
@@ -45,12 +48,14 @@ ulist = []
 for seq in tlist:
     ulist.append(seq.replace("T", "U"))
 
-print(ulist)```
+print(ulist)
+```
 
 #Now lets use a fasta file input
 still pretty easy, maybe we can now do a fasta file
 
-```fastafile = "rosalind.fasta"
+```python
+fastafile = "rosalind.fasta"
 
 fasta_u = []
 
@@ -60,13 +65,16 @@ for seq_record in SeqIO.parse(fastafile,"fasta"):
     print(seq_record.id)
     fasta_u.append(seq_record.seq.replace("T", "U"))
 
-print(fasta_u)```
+print(fasta_u)
+```
 
 #Now let's see if we can instead write this to another fasta file.
 
-```with open("output.fasta", "w") as fastaout:
+```python
+with open("output.fasta", "w") as fastaout:
     for seq_record in SeqIO.parse(fastafile, "fasta"):
         rna_seq = str((seq_record.seq.replace("T", "U")))
-        fastaout.write(">" + seq_record.id + "U" + "\n" + rna_seq + "\n")```
+        fastaout.write(">" + seq_record.id + "U" + "\n" + rna_seq + "\n")
+```
 
 #Awesome! Now lets make the whole thing interactive: (see transcribe.py)
