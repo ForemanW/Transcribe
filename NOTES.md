@@ -7,7 +7,7 @@ RNA string u by replacing all occurrences of 'T' in t with 'U' in u.
 I build upon this as we go, and end up creating a user interface to read in DNA sequences as a fasta
 and output RNA sequences as a new fasta.
 
-#import necessary packages
+##import necessary packages
 ```python
 #using biopython to get the SeqIO.parse() method for reading fasta files
 
@@ -22,7 +22,7 @@ import sys
 import os
 ```
 
-#Start with the sample string:
+##Start with the sample string:
 
 ```python
 t = "GATGGAACTTGACTACGTAAATT"
@@ -34,9 +34,9 @@ u = t.replace("T", "U")
 print(u)
 ```
 
-#Now try a sample list:
+##Now try a sample list:
 
-that was easy. Now let's see if we can do it with a list of sequences. 
+Now let's see if we can do it with a list of sequences. 
 Note, we can't just use replace() on a list, so instead we'll iterate through the list and apply replace() to each element in the list.
 
 ```python
@@ -51,7 +51,7 @@ for seq in tlist:
 print(ulist)
 ```
 
-#Now lets use a fasta file input
+##Now lets use a fasta file input
 still pretty easy, maybe we can now do a fasta file
 
 ```python
@@ -68,7 +68,7 @@ for seq_record in SeqIO.parse(fastafile,"fasta"):
 print(fasta_u)
 ```
 
-#Now let's see if we can instead write this to another fasta file.
+##Now let's see if we can instead write this to another fasta file.
 
 ```python
 with open("output.fasta", "w") as fastaout:
