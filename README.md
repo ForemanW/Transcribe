@@ -12,4 +12,6 @@ To use: clone this repo, run transcribe.py, and input the path to your desired i
 Before running, install dependencies with:
   pip install -r requirements.txt
 
+
+
 Inspired by a problem prompt at rosalind.info
