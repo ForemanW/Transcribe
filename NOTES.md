@@ -6,10 +6,13 @@ Only interesting if you want to see the learning process.
 RNA string u by replacing all occurrences of 'T' in t with 'U' in u.
 I build upon this as we go, and end up creating a user interface to read in DNA sequences as a fasta
 and output RNA sequences as a new fasta.'''
+
 #using biopython to get the SeqIO.parse() method for reading fasta files
 from Bio import SeqIO
+
 #using sys for sys.exit('error message') if user input is invalid
 import sys
+
 #using os for os.path.exists(path) to make sure user input file exists
 import os
 
