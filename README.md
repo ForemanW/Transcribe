@@ -1,4 +1,15 @@
 # Transcribe
+
+This script transcribes DNA sequences to RNA by replacing all occurrences of 'T' with 'U'.  
+It can process single strings, lists, or entire FASTA files.
+
+## Usage
 To use: clone this repo, run transcribe.py, and input the path to your desired input.fasta and output.fasta files when prompted. 
 
-A fun side-project I created, inspired by a problem prompt at rosalind.info. This script reads in a fasta file of DNA sequences, transcribes each element to its corresponding RNA sequence, and outputs the RNA sequences in a new output fasta file.
+
+## Dependencies: 
+- biopython
+Before running, install dependencies with:
+  pip install -r requirements.txt
+
+Inspired by a problem prompt at rosalind.info
