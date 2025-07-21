@@ -1,0 +1,69 @@
+'''Problem from rosalind.info. The goal is pretty simple: given a DNA string t, 'transcribe' to an 
+RNA string u by replacing all occurrences of 'T' in t with 'U' in u.
+I build upon this as we go, and end up creating a user interface to read in DNA sequences as a fasta
+and output RNA sequences as a new fasta.'''
+#using biopython to get the SeqIO.parse() method for reading fasta files
+from Bio import SeqIO
+#using sys for sys.exit('error message') if user input is invalid
+import sys
+#using os for os.path.exists(path) to make sure user input file exists
+import os
+
+#Start with the sample dataset:
+t = "GATGGAACTTGACTACGTAAATT"
+
+#lets use the replace() method, which takes arguments (find, replace)
+u = t.replace("T", "U")
+
+print(u)
+
+'''that was easy. Now let's see if we can do it with a list of sequences. 
+Note, we can't just use replace() on a list, so instead we'll iterate through the list and apply replace() to each element in the list.'''
+
+tlist = ["GATGGAACTTGACTACGTAAATT", "GTTGATGGAACTTGACTACGTAAATT", "GATGGAACTTGACTACGTAAATTGTTC"]
+ulist = []
+#we'll need to append to ulist in this loop rather than overwrite (ie ulist.append() rather than ulist =).
+for seq in tlist:
+    ulist.append(seq.replace("T", "U"))
+
+print(ulist)
+
+'''still pretty easy, maybe we can now do a fasta file'''
+fastafile = "rosalind.fasta"
+fasta_u = []
+#we'll use the SeqIO.parse() function, which takes a file name and a file type and returns an iterable from that file.
+for seq_record in SeqIO.parse(fastafile,"fasta"):
+    print(seq_record.id)
+    fasta_u.append(seq_record.seq.replace("T", "U"))
+
+print(fasta_u)
+
+#Now let's see if we can instead write this to another fasta file.
+with open("output.fasta", "w") as fastaout:
+    for seq_record in SeqIO.parse(fastafile, "fasta"):
+        rna_seq = str((seq_record.seq.replace("T", "U")))
+        fastaout.write(">" + seq_record.id + "U" + "\n" + rna_seq + "\n")
+
+'''Awesome! Now lets make the whole thing interactive:'''
+
+#read in the input fasta file
+fastafile = input("Enter path to your input (DNA) fasta file: ")
+#check that its a valid file type
+if fastafile.endswith(".fasta") == False:
+    sys.exit("Please enter a valid file name, ending with .fasta")
+#check that the input file exists
+if os.path.exists(fastafile) == False:
+    sys.exit("Please enter a valid path, if input file is in this directory, just enter the 'filename.fasta'")
+
+#read in the output file name (will create a file if it doesn't already exist, don't need to check path)
+outputfile = input("Enter name of your output file (include .fasta ending): ")
+#check that its a valid file type
+if outputfile.endswith(".fasta") == False:
+    sys.exit("Please enter a valid file name, ending with .fasta")
+
+with open(outputfile, "w") as fastaout:
+    for seq_record in SeqIO.parse(fastafile, "fasta"):
+        rna_seq = str((seq_record.seq.replace("T", "U")))
+        fastaout.write(">" + seq_record.id + "U" + "\n" + rna_seq + "\n")
+
+#Alrighty!
