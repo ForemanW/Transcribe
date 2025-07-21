@@ -7,7 +7,7 @@ RNA string u by replacing all occurrences of 'T' in t with 'U' in u.
 I build upon this as we go, and end up creating a user interface to read in DNA sequences as a fasta
 and output RNA sequences as a new fasta.
 
-## import necessary packages
+## Import necessary packages
 ```python
 #using biopython to get the SeqIO.parse() method for reading fasta files
 
