@@ -44,9 +44,13 @@ for seq in tlist:
 print(ulist)
 
 '''still pretty easy, maybe we can now do a fasta file'''
+
 fastafile = "rosalind.fasta"
+
 fasta_u = []
+
 #we'll use the SeqIO.parse() function, which takes a file name and a file type and returns an iterable from that file.
+
 for seq_record in SeqIO.parse(fastafile,"fasta"):
     print(seq_record.id)
     fasta_u.append(seq_record.seq.replace("T", "U"))
@@ -54,6 +58,7 @@ for seq_record in SeqIO.parse(fastafile,"fasta"):
 print(fasta_u)
 
 #Now let's see if we can instead write this to another fasta file.
+
 with open("output.fasta", "w") as fastaout:
     for seq_record in SeqIO.parse(fastafile, "fasta"):
         rna_seq = str((seq_record.seq.replace("T", "U")))
