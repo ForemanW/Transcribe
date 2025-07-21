@@ -7,33 +7,37 @@ RNA string u by replacing all occurrences of 'T' in t with 'U' in u.
 I build upon this as we go, and end up creating a user interface to read in DNA sequences as a fasta
 and output RNA sequences as a new fasta.
 
-using biopython to get the SeqIO.parse() method for reading fasta files
+#import necessary packages
+```python
+#using biopython to get the SeqIO.parse() method for reading fasta files
 
-'''from Bio import SeqIO'''
+from Bio import SeqIO
 
-using sys for sys.exit('error message') if user input is invalid
+#using sys for sys.exit('error message') if user input is invalid
 
-'''import sys'''
+import sys
 
-using os for os.path.exists(path) to make sure user input file exists
+#using os for os.path.exists(path) to make sure user input file exists
 
-'''import os'''
+import os```
 
-#Start with the sample dataset:
+#Start with the sample string:
 
-'''t = "GATGGAACTTGACTACGTAAATT"
+```t = "GATGGAACTTGACTACGTAAATT"
 
 #lets use the replace() method, which takes arguments (find, replace)
 
 u = t.replace("T", "U")
 
-print(u)'''
+print(u)```
+
+#Now try a sample list:
 
 that was easy. Now let's see if we can do it with a list of sequences. 
 Note, we can't just use replace() on a list, so instead we'll iterate through the list and apply replace() to each element in the list.
 
-'''tlist = ["GATGGAACTTGACTACGTAAATT", "GTTGATGGAACTTGACTACGTAAATT", "GATGGAACTTGACTACGTAAATTGTTC"]
-
+```python
+tlist = ["GATGGAACTTGACTACGTAAATT", "GTTGATGGAACTTGACTACGTAAATT", "GATGGAACTTGACTACGTAAATTGTTC"]
 ulist = []
 
 #we'll need to append to ulist in this loop rather than overwrite (ie ulist.append() rather than ulist =).
@@ -41,11 +45,12 @@ ulist = []
 for seq in tlist:
     ulist.append(seq.replace("T", "U"))
 
-print(ulist)'''
+print(ulist)```
 
+#Now lets use a fasta file input
 still pretty easy, maybe we can now do a fasta file
 
-'''fastafile = "rosalind.fasta"
+```fastafile = "rosalind.fasta"
 
 fasta_u = []
 
@@ -55,13 +60,13 @@ for seq_record in SeqIO.parse(fastafile,"fasta"):
     print(seq_record.id)
     fasta_u.append(seq_record.seq.replace("T", "U"))
 
-print(fasta_u)'''
+print(fasta_u)```
 
 #Now let's see if we can instead write this to another fasta file.
 
-'''with open("output.fasta", "w") as fastaout:
+```with open("output.fasta", "w") as fastaout:
     for seq_record in SeqIO.parse(fastafile, "fasta"):
         rna_seq = str((seq_record.seq.replace("T", "U")))
-        fastaout.write(">" + seq_record.id + "U" + "\n" + rna_seq + "\n")'''
+        fastaout.write(">" + seq_record.id + "U" + "\n" + rna_seq + "\n")```
 
 #Awesome! Now lets make the whole thing interactive: (see transcribe.py)
