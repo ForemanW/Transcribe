@@ -20,9 +20,11 @@ import sys
 import os
 
 #Start with the sample dataset:
+
 t = "GATGGAACTTGACTACGTAAATT"
 
 #lets use the replace() method, which takes arguments (find, replace)
+
 u = t.replace("T", "U")
 
 print(u)
@@ -31,8 +33,11 @@ print(u)
 Note, we can't just use replace() on a list, so instead we'll iterate through the list and apply replace() to each element in the list.'''
 
 tlist = ["GATGGAACTTGACTACGTAAATT", "GTTGATGGAACTTGACTACGTAAATT", "GATGGAACTTGACTACGTAAATTGTTC"]
+
 ulist = []
+
 #we'll need to append to ulist in this loop rather than overwrite (ie ulist.append() rather than ulist =).
+
 for seq in tlist:
     ulist.append(seq.replace("T", "U"))
 
